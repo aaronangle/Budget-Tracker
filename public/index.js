@@ -93,11 +93,10 @@ function fetchInsert(name, amount) {
 }
 button.forEach(element => {
     element.addEventListener("click", function () {
-
         const id = this.getAttribute("data-id");
         const currentTotal = parseInt(total.innerHTML);
         const currentName = name.value;
-        const currentAmount = parseInt(amount.value);
+        let currentAmount = parseInt(amount.value);
         if (currentAmount === "" || currentName === "") {
             alert("Please fill out all the fields");
             return
@@ -107,6 +106,7 @@ button.forEach(element => {
             total.innerHTML = currentTotal + currentAmount;
         } else {
             fetchInsert(currentName, (currentAmount * -1));
+            currentAmount = currentAmount * -1;
             total.innerHTML = currentTotal - currentAmount;
         }
 
