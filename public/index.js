@@ -8,9 +8,6 @@ let transactions = [];
 let myChart;
 let totalCurrentAmount = 0;
 
-console.log(new Date().toLocaleString())
-console.log(new Date())
-
 window.addEventListener("load", function () {
     fetch("/transactions", {
         method: "GET"
@@ -75,7 +72,7 @@ function populateChart() {
 }
 
 function fetchInsert(name, amount) {
-    data = {
+    const data = {
         name: name,
         value: amount,
         date: new Date().toLocaleString("en-US")
@@ -89,7 +86,9 @@ function fetchInsert(name, amount) {
             "Content-Type": "application/json"
         }
     }).then(response => {
-        console.log(response);
+
+    }).catch(err => {
+        saveRecord(data)
     })
 }
 button.forEach(element => {
